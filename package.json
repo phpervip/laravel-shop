@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "china-area-data": "^4.0.0",
-        "de-indent": "^1.0.2"
+        "de-indent": "^1.0.2",
+        "sweetalert": "^2.1.2"
     }
 }

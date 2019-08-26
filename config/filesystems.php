@@ -42,7 +42,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -62,12 +61,6 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
-        ],
-        'admin' => [
-            'driver' => 'local',
-            'root' => storage_path('uploads'),
-            'url' => env('APP_URL').'/uploads',
-            'visibility' => 'public',
         ],
 
     ],

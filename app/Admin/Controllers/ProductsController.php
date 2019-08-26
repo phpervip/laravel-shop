@@ -82,6 +82,11 @@ class ProductsController extends AdminController
         return $content->header('创建商品')->body($this->form());
     }
 
+    public function edit($id, Content $content)
+    {
+        return $content->header('编辑商品')->body($this->form()->edit($id));
+    }
+
     /**
      * Make a form builder.
      *
@@ -91,13 +96,15 @@ class ProductsController extends AdminController
     {
         $form = new Form(new Product);
 
+        $form->editor('description', '商品描述')->rules('required');
+
         $form->text('title','商品名称')->rules('required');
 
         $form->image('image', '封面图片')->rules('required|image');
 
-        $form->editor('description', '商品描述')->rules('required');
 
-        $form->switch('on_sale', '上架')->options(['1'=>'是','0'=>'否'])->default('0');
+
+        $form->radio('on_sale', '上架')->options(['1'=>'是','0'=>'否'])->default('0');
 
         // 直接添加一对关的关联模型
         $form->hasMany('skus', 'SKU列表', function(Form\NestedForm $form){
@@ -118,10 +125,7 @@ class ProductsController extends AdminController
         return $this->form()->store();
     }
 
-    public function edit($id, Content $content)
-    {
-        return $content->header('编辑商品')->body($this->form()->edit($id));
-    }
+
 
     public function update($id)
     {

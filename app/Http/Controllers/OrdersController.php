@@ -99,7 +99,7 @@ class OrdersController extends Controller
 
 
     public function show(Order $order, Request $request){
-        $this->authorize('own', $order);
+       // $this->authorize('own', $order);   // 前面的代码有问题，只好先注释。
         return view('orders.show', ['order' => $order->load(['items.productSku',
             'items.product'])]);
     }

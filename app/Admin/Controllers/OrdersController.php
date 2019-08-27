@@ -72,7 +72,8 @@ class OrdersController extends Controller
             ->body(view('admin.orders.show', ['order' => $order]));
     }
 
-      public function ship(Order $order, Request $request)
+
+    public function ship(Order $order, Request $request)
     {
         // 判断当前订单是否已支付
         if (!$order->paid_at) {
@@ -98,7 +99,7 @@ class OrdersController extends Controller
             'ship_data'   => $data,
         ]);
 
-        // 返回上一页
-        return redirect()->back();
+        // 返回订单信息
+        return $order;
     }
 }

@@ -50,7 +50,7 @@ class ProductsController extends Controller
             throw new InvalidRequestException('商品未上架');
         }
 
-        $favor = false;
+        $favored = false;
         if($user = $request->user()){
             $favored = boolval($user->favoriteProducts()->find($product->id));
         }
@@ -81,6 +81,12 @@ class ProductsController extends Controller
     }
 
 
+    public function favorites(Request $request)
+    {
+        $products = $request->user()->favoriteProducts()->paginate(16);
+
+        return view('products.favorites', ['products' => $products]);
+    }
 
 
 

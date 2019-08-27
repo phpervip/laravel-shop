@@ -11,9 +11,9 @@ return [
     ],
 
     'wechat' => [
-        'app_id'      => '',
-        'mch_id'      => '',
-        'key'         => 'c6ed20b448ab17ecdd495ac5556c1478', // 密钥
+        'app_id'      => 'wx********',
+        'mch_id'      => '15********',
+        'key'         => '**********', // 密钥
         'cert_client' => resource_path('wechat_pay/apiclient_cert.pem'),
         'cert_key'    => resource_path('wechat_pay/apiclient_cert.pem'),
         'log'         => [

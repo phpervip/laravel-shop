@@ -25,4 +25,13 @@ Route::group([
     $router->get('orders/{order}', 'OrdersController@show')->name('admin.orders.show');
     $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
 
+
+    $router->get('categories', 'CategoriesController@index');
+    $router->get('categories/create', 'CategoriesController@create');
+    $router->get('categories/{id}/edit', 'CategoriesController@edit');
+    $router->post('categories', 'CategoriesController@store');
+    $router->put('categories/{id}', 'CategoriesController@update');
+    $router->delete('categories/{id}', 'CategoriesController@destroy');
+    $router->get('api/categories', 'CategoriesController@apiIndex');
+
 });

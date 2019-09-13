@@ -7,9 +7,13 @@
 /public/mix-manifest.json
 /storage/*.key
 /vendor
+/resources/wechat_pay
 .env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+
+

@@ -14,7 +14,7 @@ class Category extends Model
     protected static function boot(){
         parent::boot();
         // 监听 Category 的创建事件，用于初始化 path 和 level 字段值
-        static::creating(function(Category $category)){
+        static::creating(function(Category $category){
             // 如果创建的是一个根类目
             if(is_null($category->parent_id)){
                 // 将层级设为 0
@@ -72,10 +72,10 @@ class Category extends Model
     // 定义一个访问器，获取以 - 为分隔的所有祖先类目名称以及当前类目的名称
     public function getFullNameAttribute()
     {
-        return $this->ancestors
-                    ->pluck('name')
-                    ->push($this->name)
-                    ->implode('-');
+        return $this->ancestors  // 获取所有祖先类目
+                    ->pluck('name') // 取出所有祖先类目的 name 字段作为一个数组
+                    ->push($this->name) // 将当前类目的 name 字段值加到数组的末尾
+                    ->implode('-'); // 用 - 符号将数组的值组装成一个字符串
     }
 
 

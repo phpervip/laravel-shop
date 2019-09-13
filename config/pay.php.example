@@ -1,0 +1,23 @@
+<?php
+
+return [
+    'alipay' => [
+        'app_id'         => '2016*******',
+        'ali_public_key' => 'MIIBI******',
+        'private_key'    => 'MIIEo******',
+        'log'            => [
+            'file' => storage_path('logs/alipay.log'),
+        ],
+    ],
+
+    'wechat' => [
+        'app_id'      => 'wx********',
+        'mch_id'      => '15********',
+        'key'         => 'c6********', // 密钥
+        'cert_client' => resource_path('wechat_pay/apiclient_cert.pem'),
+        'cert_key'    => resource_path('wechat_pay/apiclient_cert.pem'),
+        'log'         => [
+            'file' => storage_path('logs/wechat_pay.log'),
+        ],
+    ],
+];

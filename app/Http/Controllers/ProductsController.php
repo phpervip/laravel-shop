@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Exceptions\InvalidRequestException;
+use App\Models\Category;
 
 class ProductsController extends Controller
 {
@@ -25,6 +26,17 @@ class ProductsController extends Controller
             });
         }
 
+        // 如果有传入 category_id 字段，并且在数据库中有对应的类目
+        if($request->input('category_id') && $category = Category::find($request->input('category_id'))){
+            if($category->is_directory){
+                $builder->whereHas('category',function($query) use ($category){
+                    $query->where('path','like',$category->path.$category->id.'-%');
+                });
+            }else{
+                $builder->where('category_id',$category->id);
+            }
+        }
+
         if($order = $request->input('order','')){
             if(preg_match('/^(.+)_(asc|desc)$/',$order,$m)){
                 if(in_array($m[1],['price','sold_count','rating'])){
@@ -37,9 +49,11 @@ class ProductsController extends Controller
         return view('products.index',[
             'products'=>$products,
             'filters'=>[
-                'search'=>$search,
-                'order'=>$order
+                'search'    =>$search,
+                'order'     =>$order,
             ],
+            // 等价于 isset($category) ? $category : null
+            'category'  =>$category ?? null,
         ]);
     }
 

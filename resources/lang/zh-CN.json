@@ -8,6 +8,18 @@
     "Is directory": "是否目录",
     "Path": "类目路径",
     "Parent name": "父类目",
-    "Parent id": "父类目"
+    "Parent id": "父类目",
+
+    "Title": "商品名称",
+    "On sale": "已上架",
+    "Price" : "价格",
+    "Target_amount": "目标金额",
+    "End_at": "结束时间",
+    "Total_amount": "目前金额",
+    "Status": "状态",
+    "Category id": "类目",
+    "Image": "封面图片",
+    "Description": "商品描述"
+
 
 }

@@ -9,6 +9,7 @@ use App\Models\Category;
 
 class ProductsController extends Controller
 {
+    // 使用 Laravel 的依赖注入，自动创建 $categoryService 对象
     public function index(Request $request)
     {
         $builder = Product::query()->where('on_sale',true);
@@ -46,14 +47,16 @@ class ProductsController extends Controller
         }
 
         $products = $builder->paginate(16);
+
+
         return view('products.index',[
             'products'=>$products,
             'filters'=>[
-                'search'    =>$search,
-                'order'     =>$order,
+                'search'    =>  $search,
+                'order'     =>  $order,
             ],
             // 等价于 isset($category) ? $category : null
-            'category'  =>$category ?? null,
+            'category'      => $category ?? null,
         ]);
     }
 

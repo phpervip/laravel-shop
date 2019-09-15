@@ -32,11 +32,10 @@ class PaymentController extends Controller
     public function alipayReturn()
     {
         // 校验提交的参数是否合法
-       // $data = app('alipay')->verify();
-       // dd($data);
-
+       $data = app('alipay')->verify();
         try {
             app('alipay')->verify();
+
         } catch (\Exception $e) {
             return view('pages.error',['msg'=>'数据不正确']);
         }
@@ -75,7 +74,7 @@ class PaymentController extends Controller
             'payment_method' => 'alipay', // 支付方式
             'payment_no'     => $data->trade_no, // 支付宝订单号
         ]);
-        $this->afterPaid($order);
+        // $this->afterPaid($order);
         return app('alipay')->success();
 
 
@@ -127,7 +126,7 @@ class PaymentController extends Controller
             'payment_no'     => $data->transaction_id,
         ]);
 
-        $this->afterPaid($order);
+        // $this->afterPaid($order);
         return app('wechat_pay')->success();
     }
 

@@ -48,7 +48,7 @@ class OrdersController extends Controller
         $grid->column('total_amount', '总金额')->sortable();
         $grid->column('paid_at', '支付时间')->sortable();
         $grid->column('ship_status','物流')->display(function($value){
-            return Order::$refundStatusMap[$value];
+           //return Order::$refundStatusMap[$value];
         });
         // 禁用创建按钮
         $grid->disableCreateButton();
@@ -102,4 +102,6 @@ class OrdersController extends Controller
         // 返回订单信息
         return $order;
     }
+
+
 }

@@ -57,6 +57,14 @@ Route::group(['middleware'=>['auth','verified']],function(){
         Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
         Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
 
+
+        Route::get('orders/{order}/review','OrdersController@review')->name('orders.review.show');
+
+        Route::post('orders/{order}/review','OrdersController@sendReview')->name('orders.review.store');
+
+
+
+
         Route::post('crowdfunding_orders','OrdersController@crowdfunding')->name('crowdfunding_orders.store');
 });
 

@@ -95,6 +95,17 @@
             @endif
          <!-- 支付按钮结束 -->
 
+         <!-- 不是众筹订单，已支付，且退款状态是未退款时展示申请退款按钮 -->
+        @if($order->type !== \App\Models\Order::TYPE_CROWDFUNDING &&
+            $order->paid_at &&
+            $order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
+        <div class="refund-button">
+          <button class="btn btn-sm btn-danger" id="btn-apply-refund">申请退款</button>
+        </div>
+        @endif
+
+
+
          <!-- 如果订单的发货状态为已发货则展示确认收货按钮 -->
         @if($order->ship_status === \App\Models\Order::SHIP_STATUS_DELIVERED)
         <div class="receive-button">

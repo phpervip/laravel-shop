@@ -21,7 +21,7 @@
 
 LOCK TABLES `admin_menu` WRITE;
 /*!40000 ALTER TABLE `admin_menu` DISABLE KEYS */;
-INSERT INTO `admin_menu` VALUES (1,0,1,'首页','fa-bar-chart','/',NULL,NULL,'2019-08-27 13:02:32'),(2,0,6,'系统管理','fa-tasks','',NULL,NULL,'2019-09-13 13:22:49'),(3,2,7,'管理员','fa-users','auth/users',NULL,NULL,'2019-09-13 13:22:49'),(4,2,8,'角色','fa-user','auth/roles',NULL,NULL,'2019-09-13 13:22:49'),(5,2,9,'权限','fa-ban','auth/permissions',NULL,NULL,'2019-09-13 13:22:49'),(6,2,10,'菜单','fa-bars','auth/menu',NULL,NULL,'2019-09-13 13:22:49'),(7,2,11,'操作日志','fa-history','auth/logs',NULL,NULL,'2019-09-13 13:22:49'),(8,0,2,'用户管理','fa-users','/users',NULL,'2019-08-26 07:31:15','2019-08-27 13:02:32'),(9,0,3,'商品管理','fa-cubes','/products',NULL,'2019-08-26 08:38:16','2019-08-27 13:02:32'),(10,0,5,'订单管理','fa-rmb','/orders',NULL,'2019-08-27 13:01:57','2019-09-13 13:22:49'),(11,0,4,'类目管理','fa-bars','categories',NULL,'2019-09-13 12:47:46','2019-09-13 14:00:09');
+INSERT INTO `admin_menu` VALUES (1,0,1,'首页','fa-bar-chart','/',NULL,NULL,'2019-08-27 13:02:32'),(2,0,8,'系统管理','fa-tasks','',NULL,NULL,'2019-09-14 08:39:52'),(3,2,9,'管理员','fa-users','auth/users',NULL,NULL,'2019-09-14 08:39:52'),(4,2,10,'角色','fa-user','auth/roles',NULL,NULL,'2019-09-14 08:39:52'),(5,2,11,'权限','fa-ban','auth/permissions',NULL,NULL,'2019-09-14 08:39:52'),(6,2,12,'菜单','fa-bars','auth/menu',NULL,NULL,'2019-09-14 08:39:52'),(7,2,13,'操作日志','fa-history','auth/logs',NULL,NULL,'2019-09-14 08:39:52'),(8,0,2,'用户管理','fa-users','/users',NULL,'2019-08-26 07:31:15','2019-08-27 13:02:32'),(9,0,3,'商品管理','fa-cubes','/products',NULL,'2019-08-26 08:38:16','2019-08-27 13:02:32'),(10,0,7,'订单管理','fa-rmb','/orders',NULL,'2019-08-27 13:01:57','2019-09-14 08:39:52'),(11,0,6,'类目管理','fa-bars','categories',NULL,'2019-09-13 12:47:46','2019-09-14 08:39:52'),(12,9,5,'众筹商品','fa-flag-checkered','crowdfunding_products',NULL,'2019-09-14 08:38:30','2019-09-14 08:39:52'),(13,9,4,'普通商品','fa-cubes','/products',NULL,'2019-09-14 08:39:00','2019-09-14 08:39:52');
 /*!40000 ALTER TABLE `admin_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-13 14:00:13
+-- Dump completed on 2019-09-15  2:16:36

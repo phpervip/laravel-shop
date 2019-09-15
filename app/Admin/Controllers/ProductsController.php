@@ -37,7 +37,7 @@ class ProductsController extends AdminController
     {
         $grid = new Grid(new Product);
 
-        $grid->model()->with(['category']);
+        $grid->model()->where('type',Product::TYPE_NORMAL)->with(['category']);
 
         $grid->column('id', __('Id'))->sortable();
         $grid->column('title', '商品名称');
@@ -102,6 +102,9 @@ class ProductsController extends AdminController
     {
         $form = new Form(new Product);
 
+        // 在表单中添加一个名为 type，值为 Product::TYPE_NOMAL 的隐藏字段
+        $form->hidden('type')->value(Product::TYPE_NORMAL);
+
         $form->editor('description', '商品描述')->rules('required');
 
         $form->text('title','商品名称')->rules('required');
@@ -138,7 +141,6 @@ class ProductsController extends AdminController
     {
         return $this->form()->store();
     }
-
 
 
     public function update($id)

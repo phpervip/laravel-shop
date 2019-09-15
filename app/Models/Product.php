@@ -32,7 +32,6 @@ class Product extends Model
         if(Str::startsWith($this->attributes['image'],['http://','https://'])){
             return $this->attributes['image'];
         }
-
         return \Storage::disk('public')->url($this->attributes['image']);
     }
 
@@ -41,7 +40,7 @@ class Product extends Model
         return $this->belongsTo(category::class);
     }
 
-    public function crowdfuning()
+    public function crowdfunding()
     {
         return $this->hasOne(CrowdfundingProduct::class);
     }

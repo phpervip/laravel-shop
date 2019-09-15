@@ -16,7 +16,8 @@ use App\Services\OrderService;
 use App\Http\Requests\CrowdFundingOrderRequest;
 use App\Http\Requests\SendReviewRequest;
 use App\Events\OrderReviewed;
-
+use App\Http\Requests\ApplyRefundRequest;
+use App\Policies\OrderPolicy;
 
 class OrdersController extends Controller
 {
@@ -44,7 +45,7 @@ class OrdersController extends Controller
 
 
     public function show(Order $order, Request $request){
-       // $this->authorize('own', $order);   // 前面的代码有问题，只好先注释。
+        //$this->authorize('own', $order);   // 前面的代码有问题，只好先注释。
         return view('orders.show', ['order' => $order->load(['items.productSku',
             'items.product'])]);
     }
@@ -52,7 +53,7 @@ class OrdersController extends Controller
     public function received(Order $order, Request $request)
     {
         // 校验权限
-        // $this->authorize('own', $order); // 前面代码有错，先注释
+        //$this->authorize('own', $order); // 前面代码有错，先注释
 
         // 判断订单的发货状态是否为已发货
         if ($order->ship_status !== Order::SHIP_STATUS_DELIVERED) {
@@ -70,7 +71,7 @@ class OrdersController extends Controller
     public function review(Order $order)
     {
         // 检验权限
-        // $this->authorize('own',$order);
+        //$this->authorize('own',$order);
         // 判断是否已支付
         if(!$order->paid_at){
             throw new InvalidRequestException('该订单未支付，不可评价');
@@ -86,7 +87,7 @@ class OrdersController extends Controller
     public function sendReview(Order $order, SendReviewRequest $request)
     {
         // 检验权限
-        // $this->authorize('own', $order);
+        //$this->authorize('own', $order);
         if(!$order->paid_at){
             throw new InvalidRequestException('该订单未支付，不可评价');
         }
@@ -129,6 +130,31 @@ class OrdersController extends Controller
         $address = UserAddress::find($request->input('address_id'));
         $amount = $request->input('amount');
         return $orderService->crowdfunding($user, $address, $sku, $amount);
+    }
+
+    public function applyRefund(Order $order, ApplyRefundRequest $request)
+    {
+        // 校验订单是否属于当前用户
+        //$this->authorize('own',$order);
+        // 判断订单是否已付款
+        if (!$order->paid_at) {
+            throw new InvalidRequestException('该订单未支付，不可退款');
+        }
+        // 判断订单退款状态是否正确
+        if ($order->refund_status !== Order::REFUND_STATUS_PENDING) {
+            throw new InvalidRequestException('该订单已经申请过退款，请勿重复申请');
+        }
+        // 将用户输入的退款理由放到订单的 extra 字段中
+        $extra                  = $order->extra ?: [];
+        $extra['refund_reason'] = $request->input('reason');
+        // 将订单退款状态改为已申请退款
+        $order->update([
+            'refund_status' => Order::REFUND_STATUS_APPLIED,
+            'extra'         => $extra,
+        ]);
+
+        return $order;
+
     }
 
 }

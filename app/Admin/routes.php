@@ -40,4 +40,6 @@ Route::group([
     $router->get('crowdfunding_products/{id}/edit', 'CrowdfundingProductsController@edit');
     $router->put('crowdfunding_products/{id}', 'CrowdfundingProductsController@update');
 
+    $router->post('orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
+
 });

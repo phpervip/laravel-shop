@@ -27,7 +27,7 @@ abstract class CommonProductsController extends Controller
     {
         return $content
             ->header('编辑'.Product::$typeMap[$this->getProductType()])
-            ->body($this->form()->edit());
+            ->body($this->form()->edit($id));
     }
 
     public function create(Content $content)

@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             $config = config('pay.alipay');
 
             // $config['notify_url'] = route('payment.alipay.notify');
-            $config['notify_url'] = 'http://requestbin.net/r/15g55b81';
+            $config['notify_url'] = 'http://requestbin.net/r/1nsc8ik1';
             $config['return_url'] = route('payment.alipay.return');
 
             // 判断当前项目运行环境是否为线上环境
